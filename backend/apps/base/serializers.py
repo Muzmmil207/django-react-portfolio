@@ -27,14 +27,14 @@ class PostSerializer(serializers.ModelSerializer):
         model = Post
         fields = [
             "id",
-            "source",
+            "title",
             "post_url",
         ]
 
 
 class PostSourceSerializer(serializers.ModelSerializer):
 
-    text_contents = PostSerializer(many=True)
+    posts = PostSerializer(many=True)
 
     class Meta:
         model = PostSource

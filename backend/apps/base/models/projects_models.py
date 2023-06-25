@@ -26,6 +26,8 @@ class MyProject(models.Model):
     src_url = models.URLField(
         "Source Code Url",
         help_text="Required",
+        blank=True,
+        null=True,
     )
     project_url = models.URLField(
         "project_url",

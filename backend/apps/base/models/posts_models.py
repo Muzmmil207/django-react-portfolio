@@ -13,7 +13,14 @@ class PostSource(models.Model):
 
 
 class Post(AbstractModel):
-    source = models.ManyToManyField(PostSource, related_name="source")
+    title = models.CharField(
+        "Title",
+        default="",
+        help_text="Required",
+        max_length=255,
+        unique=True,
+    )
+    source = models.ManyToManyField(PostSource, related_name="posts")
     post_url = models.URLField(
         "project_url",
         help_text="Required",

@@ -6,7 +6,7 @@ from rest_framework.reverse import reverse
 from rest_framework.views import APIView
 
 from .models import Contact, MyProject, Post, PostSource
-from .serializers import ContactSerializer, MyProjectsSerializer, PostSerializer
+from .serializers import ContactSerializer, MyProjectsSerializer, PostSourceSerializer
 
 
 class CreateOnly(BasePermission):
@@ -25,14 +25,16 @@ def router(request, format=None):
 
     return Response(
         {
-            "all Projects": reverse("projects-api", request=request, format=format),
-            "contacts": reverse("contact-api", request=request, format=format),
+            "Projects": reverse("projects-api", request=request, format=format),
+            "Contacts": reverse("contact-api", request=request, format=format),
+            "Posts": reverse("posts-api", request=request, format=format),
         }
     )
 
 
-class PostAPIView(APIView):
-    ...
+class PostAPIView(generics.ListAPIView):
+    serializer_class = PostSourceSerializer
+    queryset = PostSource.objects.all()
 
 
 class ProjectsAPIView(generics.ListAPIView):
