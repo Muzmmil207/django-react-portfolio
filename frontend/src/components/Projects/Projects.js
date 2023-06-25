@@ -29,24 +29,21 @@ function Projects() {
           My Recent <strong className="purple">Works </strong>
         </h1>
         <p style={{ color: "white" }}>
-          Here are a few projects I've worked on recently.
+          Here are a few projects I've worked on.
         </p>
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
 
-          {
-            projectsData.map((project, idx) => {
-              console.log(idx);
-              <Col md={4} className="project-card" key={idx}>
-                <ProjectCard
-
-                  imgPath={project.image}
-                  title={project.title}
-                  description={project.description}
-                  ghLink={project.src_url}
-                  demoLink={project.project_url}
-                />
-              </Col>
-            })}
+          {projectsData.map((project, idx) => (
+            <Col md={4} className="project-card" key={idx}>
+              <ProjectCard
+                imgPath={project.image}
+                title={project.title}
+                description={project.description}
+                ghLink={project.src_url}
+                demoLink={project.project_url}
+              />
+            </Col>
+          ))}
 
         </Row>
       </Container>
