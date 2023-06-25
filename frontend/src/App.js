@@ -6,7 +6,8 @@ import About from "./components/About/About";
 import Projects from "./components/Projects/Projects";
 import Footer from "./components/Footer";
 import Resume from "./components/Resume/ResumeNew";
-import Contacts from './components/Contacts/Contacts'
+import Contacts from './components/Contacts/Contacts';
+import Posts from './components/blog/Posts'
 import {
   BrowserRouter as Router,
   Route,
@@ -38,6 +39,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/project" element={<Projects />} />
+          <Route path="/blog" element={<Posts />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contacts />} />
           <Route path="/resume" element={<Resume />} />

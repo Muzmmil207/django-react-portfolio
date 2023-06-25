@@ -1,18 +1,23 @@
 import { Container, Row, Col } from "react-bootstrap";
 import PostsCard from "./PostsCards";
 import Particle from "../Particle";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 
 function Posts() {
   const [blogPosts, setBlogPosts] = useState([]);
+  useEffect(() => {
+    getPostsData()
+  }, [])
+
   let getPostsData = async () => {
-    let response = await fetch(`http://127.0.0.1:8000/api/users-messages/`, {
+    let response = await fetch('http://127.0.0.1:8000/posts', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       }
     })
     let data = await response.json()
+    console.log(data)
     setBlogPosts(data)
   }
 
@@ -26,17 +31,20 @@ function Posts() {
         <p style={{ color: "white" }}>
           Here are a few posts I've published recently.
         </p>
+
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
 
-          {blogPosts.map((post) => {
-            <Col md={4} className="project-card">
-              <PostsCard
-                imgPath={post.imageUrl}
-                title={post.name}
-                poLink={post.url}
-              />
-            </Col>
-          })}
+          {blogPosts.map((post_src) => (
+            post_src['posts'].map((post) => (
+              <Col md={4} className="project-card">
+                <PostsCard
+                  imgPath={post.imageUrl}
+                  title={post.title}
+                  poLink={post.url}
+                />
+              </Col>
+            ))
+          ))}
 
         </Row>
       </Container>
