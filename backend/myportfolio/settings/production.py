@@ -5,7 +5,7 @@ if not DEBUG:
 
     DATABASES = {
         "default": dj_database_url.config(
-            default="postgres://muzamil:tS3wrVF7crOQtzfbIOsqnmhXyENqkFTa@dpg-chkehn64dadfmsk7eheg-a.oregon-postgres.render.com/config_mg71_pybs",
+            default="",
             conn_max_age=60,
         )
     }
