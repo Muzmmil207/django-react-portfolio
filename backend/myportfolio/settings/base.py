@@ -2,15 +2,23 @@ import os
 from pathlib import Path
 
 import dj_database_url
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-%+u0h&bzv(bekp(o#trnz!&ml69*a#=gz9s$s43=dedjx4k*7r"
+# Environment variables configuration
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# False if not in os.environ because of casting above
+DEBUG = env("DEBUG")
+
+# exception if SECRET_KEY not in os.environ
+SECRET_KEY = env("SECRET_KEY")
 
 ALLOWED_HOSTS = []
 
@@ -27,14 +35,13 @@ INSTALLED_APPS = [
     "django.contrib.flatpages",
     "django.contrib.sitemaps",
     # LOCAL_APPS
-    "apps.base",
+    "base",
     # THIRD_PARTY_APPS
     "rest_framework",
     "ckeditor",
     "corsheaders",
 ]
 
-SITE_ID = 1
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -99,13 +106,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-####################
-## Rest Framework ##
-####################
-# REST_FRAMEWORK = {
-#     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
-#     "PAGE_SIZE": 10,
-# }
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -124,12 +124,16 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-RECIPIENT_ADDRESS = "Modather0Ali@gmail.com"
+RECIPIENT_ADDRESS = env("RECIPIENT_ADDRESS")
 
 # ckeditor configurations
 CKEDITOR_CONFIGS = {

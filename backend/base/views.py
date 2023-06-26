@@ -22,8 +22,9 @@ class CreateOnly(BasePermission):
 
 @api_view(["GET"])
 def router(request, format=None):
-    print(request.META)  # ["HTTP_USER_AGENT"])
-    print(request.META)  # ["HTTP_REMOTE_ADDER"])
+    print(request.META["HTTP_USER_AGENT"])
+    print("Windows" or "windows" in request.META["HTTP_USER_AGENT"])
+
     return Response(
         {
             "Projects": reverse("projects-api", request=request, format=format),
@@ -53,5 +54,11 @@ class ContactsAPIView(generics.ListAPIView, generics.CreateAPIView):
         serializer = ContactSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
-            return Response(data={"": ""}, status=status.HTTP_201_CREATED)
-        return Response(data=serializer.default_validators, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                data={"data": "Thanks for reaching out! we'll be in touch soon."},
+                status=status.HTTP_201_CREATED,
+            )
+        return Response(
+            data={"data": "Please provide valid data."},
+            status=status.HTTP_400_BAD_REQUEST,
+        )

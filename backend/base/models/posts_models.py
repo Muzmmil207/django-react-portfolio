@@ -13,18 +13,15 @@ class PostSource(models.Model):
 
 
 class Post(AbstractModel):
-    title = models.CharField(
-        "Title",
-        default="",
-        help_text="Required",
-        max_length=255,
-        unique=True,
-    )
+    post_url = models.URLField("project_url", help_text="Required")
     source = models.ManyToManyField(PostSource, related_name="posts")
-    post_url = models.URLField(
-        "project_url",
-        help_text="Required",
-    )
+
+    class Meta:
+        # db_table = "posts"
+        ordering = (
+            "-created_at",
+            "-updated_at",
+        )
 
     def __str__(self):
         return self.title

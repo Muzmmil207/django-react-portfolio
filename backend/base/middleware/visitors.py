@@ -2,6 +2,10 @@ from django.db.models import F
 from django_user_agents.utils import get_user_agent
 
 
+from django.utils import timezone
+# print(request.META["HTTP_USER_AGENT"])
+# print(request.META["HTTP_REMOTE_ADDER"])
+timezone.now()
 class UserStatisticsMiddleware:
     """
     "UserStatistics" middleware for counting the user device type (e.g. Mobile, Tab, PC)  and save it in the session variable.
