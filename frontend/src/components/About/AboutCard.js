@@ -8,13 +8,16 @@ function AboutCard() {
       <Card.Body>
         <blockquote className="blockquote mb-0">
           <p style={{ textAlign: "justify" }}>
-            Hi Everyone, I am <span className="purple">Muzamil Ali </span>
-            from <span className="purple"> Khartoum, Sudan.</span>
-            <br /> I am a final year student pursuing an Integrated MSc (IMSc)
-            in Maths and Computing at BIT Mesra.
+            I am a Python developer with a deep understanding of building and
+            customizing web applications.
+            <br />I strive to write reusable, testable, and efficient code to
+            deliver robust back-end functionality that meets business requirements.
             <br />
-            Additionally, I am currently employed as a software developer at
-            Juspay.
+            I am excited about collaborating with other team members,
+            and I believe that teamwork and agile development methodologies
+            are critical for developing high-quality software. I enjoy brainstorming and
+            coming up with creative solutions, and I am always looking for opportunities
+            to improve my skills.
             <br />
             <br />
             Apart from coding, some other activities that I love to do!

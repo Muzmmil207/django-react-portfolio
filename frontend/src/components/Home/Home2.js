@@ -19,10 +19,10 @@ function Home2() {
               LET ME <span className="purple"> INTRODUCE </span> MYSELF
             </h1>
             <p className="home-about-body">
-              I fell in love with programming and I have at least learnt
-              something, I think… 🤷‍♂️
+              I am expert in web dev:
+              builds, maintains, and optimizes websites with various tools & frameworks.
               <br />
-              <br />I am fluent in classics like
+              <br />fluent in classics like
               <i>
                 <b className="purple"> python & Javascript. </b>
               </i>
@@ -40,12 +40,12 @@ function Home2() {
               <i>
                 <b className="purple">
                   {" "}
-                  Modern Javascript Library and Frameworks
+                  Modern Python & Javascript Libraries and Frameworks
                 </b>
               </i>
               &nbsp; like
               <i>
-                <b className="purple"> React.js and Next.js</b>
+                <b className="purple">Django and React.js</b>
               </i>
             </p>
           </Col>

@@ -28,7 +28,6 @@ INSTALLED_APPS = [
     "django.contrib.sitemaps",
     # LOCAL_APPS
     "apps.base",
-    "apps.plugins",
     # THIRD_PARTY_APPS
     "rest_framework",
     "ckeditor",

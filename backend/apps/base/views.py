@@ -22,7 +22,8 @@ class CreateOnly(BasePermission):
 
 @api_view(["GET"])
 def router(request, format=None):
-
+    print(request.META)  # ["HTTP_USER_AGENT"])
+    print(request.META)  # ["HTTP_REMOTE_ADDER"])
     return Response(
         {
             "Projects": reverse("projects-api", request=request, format=format),
