@@ -1,9 +1,8 @@
 dj-database-url
 Django
 djangorestframework
+django-environ
 gunicorn
 Pillow
 psycopg2
-requests
-user-agents
 whitenoise
