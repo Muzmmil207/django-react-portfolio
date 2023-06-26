@@ -1,6 +1,5 @@
 import { Container, Row, Col } from "react-bootstrap";
 import React from "react";
-// import Particle from "../Particle";
 
 function Contacts() {
     let sendUsersMessage = async (e) => {
@@ -13,9 +12,7 @@ function Contacts() {
             body: JSON.stringify({ 'email': e.target.email.value, 'message': e.target.message.value })
         })
         let data = await response.json()
-        e.target.email.value = ''
-        e.target.message.value = ''
-        console.log(data)
+        e.target.innerHTML = data['data']
     }
     const handleSubmit = (e) => {
         sendUsersMessage(e)
@@ -24,7 +21,6 @@ function Contacts() {
 
     return (
         <Container fluid className="project-section">
-            {/* <Particle /> */}
             <Container>
                 <h1 className="project-heading">
                     My Recent <strong className="purple">Works </strong>
@@ -34,7 +30,7 @@ function Contacts() {
                     <Col md={4} className="project-card">
                         <form onSubmit={handleSubmit}>
                             <div className="form-group">
-                                <input type="text" className="form-control" name="email" placeholder="Enter email" />
+                                <input type="email" className="form-control" name="email" placeholder="Enter email" />
                             </div>
                             <div className="form-group">
                                 <textarea type="text" className="form-control" name="message" placeholder="Enter Message" />
