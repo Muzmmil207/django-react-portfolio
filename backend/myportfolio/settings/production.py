@@ -2,8 +2,11 @@ from .base import *
 
 if not DEBUG:
     MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
-    
-    INSTALLED_APPS += 'cloudinary_storage','cloudinary',
+
+    INSTALLED_APPS += (
+        "cloudinary_storage",
+        "cloudinary",
+    )
 
     DATABASES = {
         "default": dj_database_url.config(
@@ -29,3 +32,12 @@ if not DEBUG:
         "API_SECRET": env("API_SECRET"),
     }
     DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+
+    # Emails configurations
+    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+    EMAIL_HOST = env("EMAIL_HOST")
+    EMAIL_PORT = env("EMAIL_PORT")
+    EMAIL_USE_TLS = True
+    EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+    EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+    RECIPIENT_ADDRESS = env("RECIPIENT_ADDRESS")

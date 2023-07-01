@@ -2,7 +2,9 @@ dj-database-url
 Django
 djangorestframework
 django-environ
+django-cors-headers
 gunicorn
 Pillow
 psycopg2
 whitenoise
+django-ckeditor

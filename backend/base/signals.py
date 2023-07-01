@@ -11,8 +11,13 @@ from .models import Contact
 def contact_signals(sender, instance, created, **kwargs):
     if created:
         template = loader.get_template("email.html")
-        mail_subject = "My Portfolio"
+        subject = "My Portfolio"
         message = template.render({"contact": instance})
-        to_email = settings.RECIPIENT_ADDRESS
-        email = EmailMessage(mail_subject, message, to=[to_email])
+        email = EmailMessage(
+            subject,
+            message,
+            from_email=settings.EMAIL_HOST_USER,
+            to=[settings.RECIPIENT_ADDRESS],
+        )
+        email.get_connection()
         email.send()
