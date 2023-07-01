@@ -2,9 +2,6 @@ from rest_framework import serializers
 
 from .models import Contact, MyProject
 
-Post, PostSource = 0
-
-
 class MyProjectsSerializer(serializers.ModelSerializer):
     class Meta:
         model = MyProject
@@ -26,7 +23,7 @@ class ContactSerializer(serializers.ModelSerializer):
 
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Post
+        model = 'Post'
         fields = [
             "id",
             "image",
@@ -40,5 +37,5 @@ class PostSourceSerializer(serializers.ModelSerializer):
     posts = PostSerializer(many=True)
 
     class Meta:
-        model = PostSource
+        model = 'PostSource'
         fields = "__all__"
