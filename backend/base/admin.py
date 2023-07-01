@@ -1,9 +1,7 @@
 from django.contrib import admin
 
-from .models import Contact, DeviceTrack, MyProject, Post, PostSource
+from .models import Contact, DeviceTrack, MyProject
 
 admin.site.register(MyProject)
 admin.site.register(Contact)
-admin.site.register(Post)
-admin.site.register(PostSource)
 admin.site.register(DeviceTrack)

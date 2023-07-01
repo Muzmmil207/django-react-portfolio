@@ -1,6 +1,8 @@
 from rest_framework import serializers
 
-from .models import Contact, MyProject, Post, PostSource
+from .models import Contact, MyProject
+
+Post, PostSource = 0
 
 
 class MyProjectsSerializer(serializers.ModelSerializer):

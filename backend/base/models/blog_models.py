@@ -1,5 +1,3 @@
-from operator import mod
-
 from ckeditor.fields import RichTextField
 from django.contrib.auth import get_user_model
 from django.db import models

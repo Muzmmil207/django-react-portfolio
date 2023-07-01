@@ -2,8 +2,8 @@
 
 import ckeditor.fields
 import django.core.validators
-from django.db import migrations, models
 import utils.models.models_fields
+from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
@@ -102,9 +102,7 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "visited_data",
-                    models.DateTimeField(
-                        auto_now=True, help_text="The time when the user visit"
-                    ),
+                    models.DateTimeField(auto_now=True, help_text="The time when the user visit"),
                 ),
             ],
             options={
@@ -179,71 +177,6 @@ class Migration(migrations.Migration):
             ],
             options={
                 "db_table": "my_projects",
-            },
-        ),
-        migrations.CreateModel(
-            name="PostSource",
-            fields=[
-                (
-                    "id",
-                    models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
-                    ),
-                ),
-                (
-                    "source_name",
-                    models.CharField(max_length=40, verbose_name="post source"),
-                ),
-            ],
-            options={
-                "db_table": "posts_source",
-            },
-        ),
-        migrations.CreateModel(
-            name="Post",
-            fields=[
-                (
-                    "id",
-                    models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
-                    ),
-                ),
-                (
-                    "image",
-                    models.ImageField(
-                        default="default.jpg",
-                        null=True,
-                        upload_to=utils.models.models_fields.img_dir_path,
-                    ),
-                ),
-                (
-                    "title",
-                    models.CharField(
-                        help_text="Required",
-                        max_length=255,
-                        unique=True,
-                        verbose_name="Title",
-                    ),
-                ),
-                ("created_at", models.DateTimeField(auto_now_add=True)),
-                ("updated_at", models.DateTimeField(auto_now=True)),
-                (
-                    "post_url",
-                    models.URLField(help_text="Required", verbose_name="project_url"),
-                ),
-                (
-                    "source",
-                    models.ManyToManyField(related_name="posts", to="base.postsource"),
-                ),
-            ],
-            options={
-                "ordering": ("-created_at", "-updated_at"),
             },
         ),
     ]
