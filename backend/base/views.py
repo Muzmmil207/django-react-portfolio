@@ -1,13 +1,18 @@
 from rest_framework import generics, status
 from rest_framework.decorators import api_view
+from rest_framework.generics import mixins
 from rest_framework.permissions import BasePermission, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from rest_framework.views import APIView
 
-from .models import Contact, MyProject
-
-from .serializers import ContactSerializer, MyProjectsSerializer, PostSourceSerializer
+from .models import Author, BlogPosts, Contact, MyProject, Tag
+from .serializers import (
+    ContactSerializer,
+    MyProjectsSerializer,
+    PostSerializer,
+    TagsSerializer,
+)
 
 
 class CreateOnly(BasePermission):
@@ -23,21 +28,31 @@ class CreateOnly(BasePermission):
 
 @api_view(["GET"])
 def router(request, format=None):
-    print(request.META["HTTP_USER_AGENT"])
-    print("Windows" or "windows" in request.META["HTTP_USER_AGENT"])
 
     return Response(
         {
             "Projects": reverse("projects-api", request=request, format=format),
             "Contacts": reverse("contact-api", request=request, format=format),
             "Posts": reverse("posts-api", request=request, format=format),
+            "Tags": reverse("tags-api", request=request, format=format),
         }
     )
 
 
-class PostAPIView(generics.ListAPIView):
-    serializer_class = PostSourceSerializer
-    queryset =' PostSource.objects.all()'
+class TagsAPIView(generics.ListAPIView):
+    serializer_class = TagsSerializer
+    queryset = Tag.objects.all()
+
+
+class PostsAPIView(generics.ListAPIView):
+    serializer_class = PostSerializer
+    queryset = BlogPosts.objects.all()
+
+
+class PostDetailsAPIView(generics.RetrieveAPIView, mixins.RetrieveModelMixin):
+    serializer_class = PostSerializer
+    lookup_field = "slug"
+    queryset = BlogPosts.objects.all()
 
 
 class ProjectsAPIView(generics.ListAPIView):

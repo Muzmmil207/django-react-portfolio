@@ -1,6 +1,7 @@
 from ckeditor.fields import RichTextField
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.template.defaultfilters import slugify
 from django.utils import timezone
 from utils.models.models_fields import AbstractModel
 
@@ -39,6 +40,9 @@ class Tag(models.Model):
         unique=True,
     )
 
+    def __str__(self):
+        return self.name
+
 
 class BlogPosts(AbstractModel):
     class Meta:
@@ -60,3 +64,7 @@ class BlogPosts(AbstractModel):
         default=False,
         help_text="Draft post will not display",
     )
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.slug)
+        super().save(*args, **kwargs)

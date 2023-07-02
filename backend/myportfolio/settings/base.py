@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "corsheaders",
 ]
 
+SITE_ID = 1
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

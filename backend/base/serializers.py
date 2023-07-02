@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
-from .models import Contact, MyProject
+from .models import BlogPosts, Contact, MyProject, Tag
+
 
 class MyProjectsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -21,21 +22,26 @@ class ContactSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class TagsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tag
+        fields = ["name"]
+
+
 class PostSerializer(serializers.ModelSerializer):
+    tags = serializers.StringRelatedField(many=True)
+    date = serializers.DateTimeField(source="created_at")
+    lastmod = serializers.DateTimeField(source="updated_at")
+
     class Meta:
-        model = 'Post'
+        model = BlogPosts
         fields = [
-            "id",
-            "image",
             "title",
-            "post_url",
+            "content",
+            "summary",
+            "slug",
+            "tags",
+            "draft",
+            "date",
+            "lastmod",
         ]
-
-
-class PostSourceSerializer(serializers.ModelSerializer):
-
-    posts = PostSerializer(many=True)
-
-    class Meta:
-        model = 'PostSource'
-        fields = "__all__"
