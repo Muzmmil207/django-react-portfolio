@@ -19,5 +19,4 @@ def contact_signals(sender, instance, created, **kwargs):
             from_email=settings.EMAIL_HOST_USER,
             to=[settings.RECIPIENT_ADDRESS],
         )
-        email.get_connection()
         email.send()

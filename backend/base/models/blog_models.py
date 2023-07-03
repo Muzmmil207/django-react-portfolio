@@ -39,6 +39,10 @@ class Tag(models.Model):
         max_length=25,
         unique=True,
     )
+    slug = models.SlugField(
+        "Slug",
+        unique=True,
+    )
 
     def __str__(self):
         return self.name
@@ -58,13 +62,12 @@ class BlogPosts(AbstractModel):
     content = RichTextField(
         "Content",
     )
-    tags = models.ManyToManyField(Tag)
-    slug = models.SlugField("Slug")
+    tags = models.ManyToManyField(Tag, related_name="post_tags")
+    slug = models.SlugField(
+        "Slug",
+        unique=True,
+    )
     draft = models.BooleanField(
         default=False,
         help_text="Draft post will not display",
     )
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.slug)
-        super().save(*args, **kwargs)
