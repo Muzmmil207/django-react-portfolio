@@ -10,7 +10,7 @@ function Posts() {
   }, [])
 
   let getPostsData = async () => {
-    let response = await fetch('http://127.0.0.1:8000/posts', {
+    let response = await fetch('http://muzmmil207.pythonanywhere.com/posts', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

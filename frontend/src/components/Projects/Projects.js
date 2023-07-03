@@ -10,14 +10,13 @@ function Projects() {
 
   const [projectsData, setProjectsData] = useState([]);
   let getProjectsData = async () => {
-    let response = await fetch('http://127.0.0.1:8000/projects', {
+    let response = await fetch('https://muzmmil207.pythonanywhere.com/projects', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       }
     })
     let data = await response.json()
-    console.log(data)
     setProjectsData(data)
   }
 

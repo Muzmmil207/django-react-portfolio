@@ -10,7 +10,7 @@ if not DEBUG:
 
     DATABASES = {
         "default": dj_database_url.config(
-            default="",
+            default=env("DATABASE_URL"),
             conn_max_age=60,
         )
     }
@@ -21,9 +21,6 @@ if not DEBUG:
     # and creating unique names for each version so they can safely be cached forever.
     STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-    RENDER_EXTERNAL_HOSTNAME = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
-    if RENDER_EXTERNAL_HOSTNAME:
-        ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
     # Cloudinary Settings For Media Files
     CLOUDINARY_STORAGE = {
