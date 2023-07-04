@@ -1,6 +1,6 @@
 from .base import *
 
-if DEBUG:
+if not DEBUG:
     MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
 
     INSTALLED_APPS += (
@@ -8,7 +8,7 @@ if DEBUG:
         "cloudinary",
     )
 
-    DATABASESs = {
+    DATABASES = {
         "default": dj_database_url.config(
             default=env("DATABASE_URL"),
             conn_max_age=60,
