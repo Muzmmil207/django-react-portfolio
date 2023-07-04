@@ -4,7 +4,7 @@ import React from "react";
 function Contacts() {
     let sendUsersMessage = async (e) => {
         e.preventDefault()
-        let response = await fetch('http://muzmmil207.pythonanywhere.com/contacts', {
+        let response = await fetch('https://muzamil-ali.onrender.com/contacts', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

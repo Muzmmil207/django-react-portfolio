@@ -10,7 +10,7 @@ function Projects() {
 
   const [projectsData, setProjectsData] = useState([]);
   let getProjectsData = async () => {
-    let response = await fetch('https://muzmmil207.pythonanywhere.com/projects', {
+    let response = await fetch('https://muzamil-ali.onrender.com/projects', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
