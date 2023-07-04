@@ -14,7 +14,7 @@ class AbstractModel(models.Model):
         abstract = True
 
     image = models.ImageField(
-        upload_to=img_dir_path,
+        #upload_to=img_dir_path,
         null=True,
         default="default.jpg",
     )
