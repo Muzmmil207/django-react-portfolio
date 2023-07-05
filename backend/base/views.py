@@ -8,7 +8,7 @@ from rest_framework.permissions import BasePermission, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 
-from .models import Author, BlogPosts, Contact, MyProject, NewsletterSubscriber, Tag
+from .models import BlogPosts, Contact, MyProject, NewsletterSubscriber, Tag
 from .serializers import (
     ContactSerializer,
     MyProjectsSerializer,

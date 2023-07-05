@@ -1,28 +1,7 @@
 from ckeditor.fields import RichTextField
-from django.contrib.auth import get_user_model
 from django.db import models
-from django.template.defaultfilters import slugify
 from django.utils import timezone
 from utils.models.models_fields import AbstractModel
-
-User = get_user_model()
-
-
-class Author(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField("Avatar", upload_to="authors/")
-    occupation = models.TextField("Occupation", default="", max_length=500)
-    company = models.CharField("Company", default="", max_length=75)
-    twitter = models.URLField("Twitter", blank=True, null=True)
-    linkedin = models.URLField("Linkedin", blank=True, null=True)
-    github = models.URLField("Github", blank=True, null=True)
-    last_activity = models.DateTimeField(
-        "Last activity",
-        default=timezone.now,
-    )
-
-    def __str__(self):
-        return str(self.user)
 
 
 class Tag(models.Model):
@@ -57,7 +36,6 @@ class BlogPosts(AbstractModel):
         db_table = "blog_post"
         ordering = ("-updated_at", "-created_at")
 
-    author = models.ManyToManyField(Author)
     summary = models.TextField(max_length=500)
     content = RichTextField(
         "Content",

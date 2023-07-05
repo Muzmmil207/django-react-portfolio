@@ -16,7 +16,7 @@ class AbstractModel(models.Model):
     image = models.ImageField(
         upload_to=img_dir_path,
         null=True,
-        default="default.jpg",
+        default="https://res.cloudinary.com/dxs0fol71/image/upload/v1688536246/afe66629b25b6b778e46800144e13a7e_v9mnps.jpg",
     )
     title = models.CharField(
         "Title",
