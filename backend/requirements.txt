@@ -1,7 +1,7 @@
 asgiref
 certifi
 charset-normalizer
-cloudinary
+cloudinary==1.32.0
 dj-database-url
 Django
 django-ckeditor
