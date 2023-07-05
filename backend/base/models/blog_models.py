@@ -20,6 +20,7 @@ class Tag(models.Model):
     )
     slug = models.SlugField(
         "Slug",
+        max_length=255,
         unique=True,
     )
 
