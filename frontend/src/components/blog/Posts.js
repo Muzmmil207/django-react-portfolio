@@ -17,7 +17,6 @@ function Posts() {
       }
     })
     let data = await response.json()
-    console.log(data)
     setBlogPosts(data)
   }
 
@@ -40,7 +39,7 @@ function Posts() {
                 <PostsCard
                   imgPath={post.image}
                   title={post.title}
-                  poLink={post.post_url}
+                  poLink={'https://muzamil-blog.netlify.app/' + post.slug}
                 />
               </Col>
             ))
