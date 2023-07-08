@@ -148,6 +148,7 @@ CKEDITOR_CONFIGS = {
         "width": "100%",
     },
 }
+
 CORS_ALLOW_ALL_ORIGINS = True
 
 BLOG_URL = "https://muzamil-blog.netlify.app"
