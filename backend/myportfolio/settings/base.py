@@ -31,6 +31,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "cloudinary_storage",
+    "cloudinary",
     "django.contrib.sites",
     "django.contrib.flatpages",
     "django.contrib.sitemaps",
@@ -147,3 +149,5 @@ CKEDITOR_CONFIGS = {
     },
 }
 CORS_ALLOW_ALL_ORIGINS = True
+
+BLOG_URL = "https://muzamil-blog.netlify.app"

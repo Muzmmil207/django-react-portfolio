@@ -1,12 +1,11 @@
 from .base import *
 
-if  DEBUG:
-    MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
+if not DEBUG:
 
-    INSTALLED_APPS += (
-        "cloudinary_storage",
-        "cloudinary",
-    )
+    # INSTALLED_APPS += (
+    #     "cloudinary_storage",
+    #     "cloudinary",
+    # )
 
     DATABASES = {
         "default": dj_database_url.config(
@@ -17,6 +16,7 @@ if  DEBUG:
 
     STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
+    MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
     # Turn on WhiteNoise storage backend that takes care of compressing static files
     # and creating unique names for each version so they can safely be cached forever.
     STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"

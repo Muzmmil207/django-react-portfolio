@@ -1,6 +1,6 @@
 from ckeditor.fields import RichTextField
+from django.conf import settings
 from django.db import models
-from django.utils import timezone
 from utils.models.models_fields import AbstractModel
 
 
@@ -50,3 +50,10 @@ class BlogPosts(AbstractModel):
         default=False,
         help_text="Draft post will not display",
     )
+
+    @property
+    def blog_link(self):
+        return settings.BLOG_URL + "/blog/" + self.slug
+
+    def __str__(self):
+        return f"{self.title}: {self.summary[:30]}"

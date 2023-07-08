@@ -1,6 +1,7 @@
 import json
 
-from django.db.models import Count
+from django.conf import settings
+from django.db.models import Count, F, Value
 from rest_framework import generics, status
 from rest_framework.decorators import api_view
 from rest_framework.generics import mixins
@@ -31,20 +32,12 @@ class CreateOnly(BasePermission):
 @api_view(["GET"])
 def router(request, format=None):
 
-    # from django_seed import Seed
-
-    # seeder = Seed.seeder()
-    # seeder.add_entity(Tag, 20)
-    # seeder.add_entity(BlogPosts, 10)
-    # seeder.add_entity(MyProject, 100)
-    # seeder.add_entity(NewsletterSubscriber, 10)
-
-    # inserted_pks = seeder.execute()
     return Response(
         {
             "Projects": reverse("projects-api", request=request, format=format),
             "Contacts": reverse("contact-api", request=request, format=format),
             "Posts": reverse("posts-api", request=request, format=format),
+            "Blog Posts": reverse("blog-posts-api", request=request, format=format),
             "Post": reverse("post-api", args="a", request=request, format=format),
             "Tags": reverse("tags-api", request=request, format=format),
             "Subscribe": reverse("subscribe-api", request=request, format=format),
@@ -52,19 +45,15 @@ def router(request, format=None):
     )
 
 
-class TagsAPIView(generics.ListAPIView, mixins.ListModelMixin):
-    serializer_class = TagsSerializer
-
-    def get_queryset(self):
-        queryset = Tag.objects.all()
-        return queryset
-
-
 @api_view(["GET"])
 def posts_tags_api(request):
     data = dict()
     queryset = Tag.objects.all().annotate(Count("post_tags"))
-    data.update({tag.get("name"): tag.get("post_tags__count") for tag in queryset.values()})
+    data.update(
+            {
+                tag.get("name"): tag.get("post_tags__count") for tag in queryset.values()
+            }
+        )
 
     return Response(data=data, status=status.HTTP_200_OK)
 
@@ -79,6 +68,13 @@ class PostsAPIView(generics.ListAPIView):
         if tag is not None:
             queryset = queryset.filter(tags__slug=tag)
         return queryset
+
+
+@api_view(["GET"])
+def blog_posts(request):
+    queryset = BlogPosts.objects.all().annotate(post_url=F("slug"))
+    data = queryset.values("title", "image", "post_url")
+    return Response(data=data, status=status.HTTP_200_OK)
 
 
 class PostDetailsAPIView(generics.RetrieveAPIView, mixins.RetrieveModelMixin):

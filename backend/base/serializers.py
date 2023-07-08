@@ -36,9 +36,11 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = BlogPosts
         fields = [
+            "id",
             "title",
-            "content",
             "summary",
+            "image",
+            "content",
             "slug",
             "tags",
             "draft",
