@@ -38,7 +38,7 @@ function Posts() {
               <PostsCard
                 imgPath={post.image}
                 title={post.title}
-                poLink={'https://muzamil-blog.netlify.app/' + post.slug}
+                poLink={'https://muzamil-blog.netlify.app/blog/' + post.slug}
               />
             </Col>
           ))}
