@@ -1,4 +1,4 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Spinner, Col } from "react-bootstrap";
 import ProjectCard from "./ProjectCards";
 import Particle from "../Particle";
 import React, { useState, useEffect } from "react";
@@ -9,15 +9,23 @@ function Projects() {
   }, [])
 
   const [projectsData, setProjectsData] = useState([]);
+  const [loading, setLoading] = useState(true); // Track the loading state
+
   let getProjectsData = async () => {
-    let response = await fetch('https://muzamil-ali.onrender.com/projects', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    })
-    let data = await response.json()
-    setProjectsData(data)
+    try {
+      let response = await fetch('https://muzamil-ali.onrender.com/projects', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
+      let data = await response.json()
+      setProjectsData(data)
+      setLoading(false); // Set loading state to false after successful API response
+    } catch (error) {
+      console.error("Error fetching blog posts:", error);
+      setLoading(false); // Set loading state to false in case of error
+    }
   }
 
   return (
@@ -30,21 +38,26 @@ function Projects() {
         <p style={{ color: "white" }}>
           Here are a few projects I've worked on.
         </p>
-        <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
 
-          {projectsData.map((project, idx) => (
-            <Col md={4} className="project-card" key={idx}>
-              <ProjectCard
-                imgPath={project.image}
-                title={project.title}
-                description={project.description}
-                ghLink={project.src_url}
-                demoLink={project.project_url}
-              />
-            </Col>
-          ))}
-
-        </Row>
+        {loading ? ( // Render the loading animation if still loading
+          <Spinner animation="border" variant="primary" role="status">
+            <span className="sr-only"></span>
+          </Spinner>
+        ) : (
+          <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
+            {projectsData.map((project, idx) => (
+              <Col md={4} className="project-card" key={idx}>
+                <ProjectCard
+                  imgPath={project.image}
+                  title={project.title}
+                  description={project.description}
+                  ghLink={project.src_url}
+                  demoLink={project.project_url}
+                />
+              </Col>
+            ))}
+          </Row>
+        )}
       </Container>
     </Container>
   );
