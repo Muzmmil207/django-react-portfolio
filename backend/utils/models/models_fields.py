@@ -13,8 +13,8 @@ class AbstractModel(models.Model):
     class Meta:
         abstract = True
 
-    image = models.ImageField(
-        upload_to=img_dir_path,
+    image = models.URLField(
+      #  upload_to=img_dir_path,
         max_length=1000,
         default="https://res.cloudinary.com/dxs0fol71/image/upload/v1688536246/afe66629b25b6b778e46800144e13a7e_v9mnps.jpg",
     )
