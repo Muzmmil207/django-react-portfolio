@@ -49,11 +49,7 @@ def router(request, format=None):
 def posts_tags_api(request):
     data = dict()
     queryset = Tag.objects.all().annotate(Count("post_tags"))
-    data.update(
-            {
-                tag.get("name"): tag.get("post_tags__count") for tag in queryset.values()
-            }
-        )
+    data.update({tag.get("name"): tag.get("post_tags__count") for tag in queryset.values()})
 
     return Response(data=data, status=status.HTTP_200_OK)
 

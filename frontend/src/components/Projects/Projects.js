@@ -23,7 +23,7 @@ function Projects() {
       setProjectsData(data)
       setLoading(false); // Set loading state to false after successful API response
     } catch (error) {
-      console.error("Error fetching blog posts:", error);
+      console.error("Error fetching projects data:", error);
       setLoading(false); // Set loading state to false in case of error
     }
   }
