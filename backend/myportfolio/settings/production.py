@@ -7,12 +7,12 @@ if not DEBUG:
     #     "cloudinary",
     # )
 
-    DATABASES = {
-        "default": dj_database_url.config(
-            default=env("DATABASE_URL"),
-            conn_max_age=60,
-        )
-    }
+    # DATABASES = {
+    #     "default": dj_database_url.config(
+    #         default=env("DATABASE_URL"),
+    #         conn_max_age=60,
+    #     )
+    # }
 
     STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
